@@ -5,6 +5,7 @@ const _ = require('lodash')
 const Url = db.urls
 
 exports.createUrl = (req, res) => {
+  console.log(req)
   Url.findOne({
     where: {
       userId: req.userId,
@@ -18,7 +19,7 @@ exports.createUrl = (req, res) => {
           urlPath: req.body.urlPath
         })
           .catch(err => {
-            res.status(500).send({ message: err.message })
+            res.status(500).json({ message: err.message })
           })
       }
       rp(req.body.urlPath)
@@ -26,7 +27,7 @@ exports.createUrl = (req, res) => {
           const soup = new JSSoup(html)
           const text = soup.text
           result = processText(text)
-          res.status(200).send({ result })
+          res.status(200).json({ result: result })
         })
     })
 }

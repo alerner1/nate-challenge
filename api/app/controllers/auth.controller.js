@@ -13,10 +13,10 @@ exports.signup = (req, res) => {
     password: bcrypt.hashSync(req.body.password, 8)
   })
     .then(() => {
-      res.send({ message: "user created" })
+      res.json({ message: "user created" })
     })
     .catch(err => {
-      res.status(500).send({ message: err.message })
+      res.status(500).json({ message: err.message })
     })
 }
 
@@ -28,7 +28,7 @@ exports.signin = (req, res) => {
   })
     .then(user => {
       if (!user) {
-        return res.status(404).send({ message: "error: user not found" })
+        return res.status(404).json({ message: "error: user not found" })
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
       )
 
       if (!passwordIsValid) {
-        return res.status(401).send({
+        return res.status(401).json({
           accessToken: null,
           message: "error: invalid password"
         })
@@ -47,13 +47,13 @@ exports.signin = (req, res) => {
         expiresIn: 86400
       })
 
-      return res.status(200).send({
+      return res.status(200).json({
         id: user.id,
         email: user.email,
         accessToken: token
       })
     })
     .catch(err => {
-      res.status(500).send({ message: err.message })
+      res.status(500).json({ message: err.message })
     })
 }

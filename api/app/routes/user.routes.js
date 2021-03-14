@@ -17,4 +17,10 @@ module.exports = function(app) {
     [authJwt.verifyToken],
     controller.userAccess
   )
+
+  app.get(
+    "/api/user/urls",
+    [authJwt.verifyToken],
+    controller.userUrls
+  )
 }

@@ -11,7 +11,7 @@ exports.userAccess = (req, res) => {
 }
 
 exports.userUrls = (req, res) => {
-  Url.findAll({ where: userId === req.userId})
+  Url.findAll({ where: {userId: req.userId}})
     .then(userUrls => {
       res.status(200).json({urls: userUrls})
     })

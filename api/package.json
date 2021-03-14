@@ -15,8 +15,11 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
+    "jssoup": "0.0.12",
     "morgan": "~1.9.1",
     "mysql2": "^2.2.5",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "sequelize": "^6.5.0"
   }
 }

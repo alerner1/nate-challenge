@@ -5,7 +5,6 @@ const _ = require('lodash')
 const Url = db.urls
 
 exports.createUrl = (req, res) => {
-  console.log(req)
   Url.findOne({
     where: {
       userId: req.userId,
@@ -35,12 +34,14 @@ exports.createUrl = (req, res) => {
 const processText = (text) => {
   const lowerCaseText = _.lowerCase(text)
   const words = _.words(lowerCaseText)
-  const frequency = {}
+
+  // using a map here to guarantee preservation of insertion order
+  const frequency = new Map()
   for (let word of words) {
-    if (!(word in frequency)) {
-      frequency[word] = 1
+    if (!(frequency.has(word))) {
+      frequency.set(word, 1)
     } else {
-      frequency[word] += 1
+      frequency.set(word, frequency.get(word) + 1)
     }
   }
 

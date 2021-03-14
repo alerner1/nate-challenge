@@ -36,6 +36,7 @@ const processText = (text) => {
   const words = _.words(lowerCaseText)
 
   // using a map here to guarantee preservation of insertion order
+  // (with regular objects with key-value pairs, insertion order is not preserved with integer-like keys)
   const frequency = new Map()
   for (let word of words) {
     if (!(frequency.has(word))) {
@@ -45,7 +46,10 @@ const processText = (text) => {
     }
   }
 
-  return frequency
+  // converting to array to send as json but still preserve insertion order
+  const frequencyArr = Array.from(frequency)
+
+  return frequencyArr
 
   // to get the sorted object:
   // return Object.entries(frequency).sort((a, b) => b[1] - a[1])

@@ -4,6 +4,7 @@ const db = require('../models')
 const User = db.user
 
 verifyToken = (req, res, next) => {
+  console.log('verifying')
   let token = req.headers["x-access-token"]
 
   if (!token) {
@@ -19,6 +20,7 @@ verifyToken = (req, res, next) => {
       })
     }
     req.userId = decoded.id
+    req.email = decoded.email
     next()
   })
 }

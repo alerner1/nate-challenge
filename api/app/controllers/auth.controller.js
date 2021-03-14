@@ -57,3 +57,8 @@ exports.signin = (req, res) => {
       res.status(500).json({ message: err.message })
     })
 }
+
+exports.getUser = (req, res) => {
+  console.log('getting user')
+  return res.status(200).json({id: req.userId, email: req.email})
+}

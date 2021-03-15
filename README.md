@@ -16,13 +16,24 @@
   * Run `npm start`
     If your browser doesn't open automatically, navigate to http://localhost:3000 in your browser
 
+### Testing instructions
+
+* Back end
+  * Navigate to the api directory
+  * Run `npm test`
+* Front end
+  * Navigate to the client directory
+  * Run `npm test`
+
 ### Why I Chose This Tech Stack
 
-This submission uses Node.js (with the Express framework) for the back end and React for the front end.
+This submission uses Node.js (with the Express framework) for the back end and React for the front end. 
 
 Since it's a relatively small API without too much complex logic, Express seemed like a good fit. On the front end side of things, since there's a lot of rendering to be done, React seemed like a good choice.
 
-I also used Bootstrap to get some basic CSS in there quickly.
+I also used Bootstrap to get some basic CSS in there quickly. 
+
+Back end tests use a combination of mocha, chai, and supertest; front end tests use jest and the React testing library.
 
 ### Reasons for Chosen Unit Tests
 

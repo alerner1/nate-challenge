@@ -9,7 +9,7 @@ checkDuplicateEmail = (req, res, next) => {
   }).then(user => {
     if (user) {
       res.status(400).send({
-        message: "Error: email exists"
+        error: "email exists"
       })
       return 
     } 

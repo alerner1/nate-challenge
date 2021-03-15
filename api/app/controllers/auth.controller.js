@@ -59,6 +59,5 @@ exports.signin = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-  console.log('getting user')
   return res.status(200).json({id: req.userId, email: req.email})
 }

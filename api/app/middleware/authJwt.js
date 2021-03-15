@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config/auth.config.js')
 const db = require('../models')
-const User = db.user
+const User = db.User
 
 verifyToken = (req, res, next) => {
   console.log('verifying')
@@ -20,8 +20,15 @@ verifyToken = (req, res, next) => {
       })
     }
     req.userId = decoded.id
-    req.email = decoded.email
-    next()
+    User.findOne({
+      where: {
+        id: req.userId
+      }
+    })
+      .then(user => {
+        req.email = user.email
+        next()
+      })
   })
 }
 

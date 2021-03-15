@@ -50,7 +50,4 @@ const processText = (text) => {
   const frequencyArr = Array.from(frequency)
 
   return frequencyArr
-
-  // to get the sorted object:
-  // return Object.entries(frequency).sort((a, b) => b[1] - a[1])
 }

@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
 const NavMenu = ({ user, logoutHandler }) => {
-  const history = useHistory()
+  const history = useHistory();
 
   const viewHistory = (event) => {
-    event.preventDefault()
-    history.push('/history')
+    event.preventDefault();
+    history.push('/history');
   }
 
   const goToProcessor = (event) => {
     event.preventDefault();
-    history.push('/processor')
+    history.push('/processor');
   }
 
   return(

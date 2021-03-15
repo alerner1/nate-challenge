@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import {v4 as uuidv4} from 'uuid'
 
-const Result = ({ processedText, urlPath }) => {
+const Result = ({ processedText, urlPath, submitted }) => {
   
   const mapWords = () => {
     for (const dataChunk of processedText) {
@@ -21,23 +21,27 @@ const Result = ({ processedText, urlPath }) => {
     <Row>
       <Col xs={{ span: 6, offset: 3}}>
         <h3 className="text-center"><a href={urlPath}>{urlPath}</a></h3>
-        <Table data-testid="results-table">
-          { processedText.length > 0 ?
-              <>
-              <thead>
-                <tr>
-                  <th>Word</th>
-                  <th>Frequency</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mapWords()}
-              </tbody>
-              </>
-            :
-              'Loading...'
-          }
-        </Table>
+        {submitted ?
+          <Table data-testid="results-table">
+            { processedText.length > 0 ?
+                <>
+                <thead>
+                  <tr>
+                    <th>Word</th>
+                    <th>Frequency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {mapWords()}
+                </tbody>
+                </>
+              :
+                'Loading...'
+            }
+          </Table>
+          :
+          null
+        }
       </Col>
     </Row>
   )

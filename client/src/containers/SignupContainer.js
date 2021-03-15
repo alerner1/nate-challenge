@@ -1,9 +1,9 @@
 import React from 'react'
 import SignupForm from '../components/SignupForm'
 
-const SignupContainer = () => {
+const SignupContainer = ({ signupHandler, invalid, userExists }) => {
   return(
-    <SignupForm />
+    <SignupForm signupHandler={signupHandler} invalid={invalid} userExists={userExists} />
   )
 }
 

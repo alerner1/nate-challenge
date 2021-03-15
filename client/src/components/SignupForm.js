@@ -5,53 +5,12 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const SignupForm = () => {
+const SignupForm = ({ signupHandler, invalid, userExists }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [invalid, setInvalid] = useState(false)
-  const [userExists, setUserExists] = useState(false)
 
   const history = useHistory()
 
-  const signupHandler = (event, email, password) => {
-    event.preventDefault()
-    if (password.length < 8) {
-      setInvalid(true)
-    } else {
-      fetch('http://localhost:9000/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          "email": email,
-          "password": password
-        })
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.error) {
-            setUserExists(true)
-          } else {
-            fetch('http://localhost:9000/api/auth/signin', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                "email": email,
-                "password": password
-              })
-            })
-              .then(res => res.json())
-              .then(json => {
-                localStorage.setItem("token", json.accessToken)
-                history.push("/")
-              })
-          }
-        })
-    }
-  }
 
   return(
     <Row>

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Result from '../Result';
 
 import { render, cleanup } from '@testing-library/react';
@@ -23,7 +22,7 @@ it("renders the results in a table", () => {
     ['said', 1]
   ]
 
-  const {getByTestId} = render(<Result processedText={dummyResults} />)
+  const {getByTestId} = render(<Result processedText={[dummyResults]} submitted={true} />)
   for(const result of dummyResults) {
     expect(getByTestId(`${result[0]}-word`)).toHaveTextContent(result[0])
     expect(getByTestId(`${result[0]}-count`)).toHaveTextContent(result[1])

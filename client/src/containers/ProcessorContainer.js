@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 const ProcessorContainer = () => {
   const [processedText, setProcessedText] = useState([])
   let [urlPath, setUrlPath] = useState('')
+  const [submitted, setSubmitted] = useState(false)
   let { slug } = useParams();
 
   const token = localStorage.getItem("token")
@@ -26,6 +27,7 @@ const ProcessorContainer = () => {
       event.preventDefault()
     }
     setUrlPath(urlPath)
+    setSubmitted(true)
     fetch("http://localhost:9000/api/url/create", {
       method: 'POST',
       headers: {
@@ -56,7 +58,7 @@ const ProcessorContainer = () => {
     <>
       <h3 className="text-center m-3">Check Frequency of Words in DOM</h3>
       <UrlForm handleSubmit={handleSubmit} />
-      <Result processedText={processedText} urlPath={urlPath} /> 
+      <Result processedText={processedText} submitted={submitted} urlPath={urlPath} /> 
     </>
   )
 }

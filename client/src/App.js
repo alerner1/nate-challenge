@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from "react"
-import { Route, Switch, useHistory } from 'react-router-dom'
+import { Route, Switch, useHistory, useParams } from 'react-router-dom'
 import ProcessorContainer from './containers/ProcessorContainer'
 import LoginContainer from './containers/LoginContainer'
 import SignupContainer from './containers/SignupContainer'
@@ -65,8 +65,8 @@ function App() {
         <Route exact path="/login" render={() => <LoginContainer loginHandler={loginHandler} />} />
         <Route exact path="/signup" render={() => <SignupContainer />} />
         <Route exact path="/history" render={() => <HistoryContainer />} />
-        <Route exact path="/processor" render={() => <ProcessorContainer />} />
-        <Route path="/" render={() => <ProcessorContainer />} />
+        <Route path="/processor/:slug+" component={ProcessorContainer} />
+        <Route path="/" render={routerProps => <ProcessorContainer {...routerProps} />} />
       </Switch>
     </>
   );

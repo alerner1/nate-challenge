@@ -1,6 +1,6 @@
 const db = require('../models')
 const config = require('../config/auth.config')
-const Url = db.urls
+const Url = db.Url
 
 exports.allAccess = (req, res) => {
   res.status(200).json({result: "public content"})

@@ -43,7 +43,6 @@ const db = require('./app/models')
 
 db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0', { raw: true }).then(() => {
   db.sequelize.sync().then(() => {
-    console.log('drop and resync db')
   })
 })
 

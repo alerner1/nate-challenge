@@ -2,7 +2,7 @@ const db = require('../models')
 const rp = require ('request-promise')
 const JSSoup = require("jssoup").default
 const _ = require('lodash')
-const Url = db.urls
+const Url = db.Url
 
 exports.createUrl = (req, res) => {
   Url.findOne({

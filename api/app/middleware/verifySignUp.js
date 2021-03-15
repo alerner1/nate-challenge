@@ -1,5 +1,5 @@
 const db = require("../models")
-const User = db.users
+const User = db.User
 
 checkDuplicateEmail = (req, res, next) => {
   User.findOne({
@@ -11,9 +11,8 @@ checkDuplicateEmail = (req, res, next) => {
       res.status(400).send({
         message: "Error: email exists"
       })
-      return
-    }
-
+      return 
+    } 
     next()
   })
 }

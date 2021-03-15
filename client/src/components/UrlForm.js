@@ -9,13 +9,16 @@ const UrlForm = ({ handleSubmit }) => {
 
   return(
     <Row className="m-3">
-      <Col xs={{ span: 4, offset: 4 }}>
+      <Col xs={{ span: 6, offset: 4 }}>
         <Form inline>
           <Form.Group controlId="urlForm.urlPathInput">
             <Form.Label>URL: </Form.Label>
             <Form.Control onChange={e => setUrlPath(e.target.value)} placeholder="url to be processed" value={urlPath} />
           </Form.Group>
-          <Button type="submit" onClick={e => handleSubmit(e, urlPath)}>
+          <Button type="submit" onClick={e => {
+              setUrlPath('')
+              handleSubmit(e, urlPath)
+            }}>
             Submit
           </Button>
         </Form>

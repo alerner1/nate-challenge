@@ -18,6 +18,9 @@ const NavMenu = ({ user, logoutHandler }) => {
 
   return(
     <Navbar bg="light" expand="lg">
+      <Navbar.Brand>
+        Nate Challenge!
+      </Navbar.Brand>
       <Nav>
         {user ? 
         <>

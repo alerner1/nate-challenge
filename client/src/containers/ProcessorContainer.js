@@ -15,17 +15,17 @@ const ProcessorContainer = () => {
     if (slug) {
       const encodedPath = slug.split('=')[1]
       const decodedPath = decodeURIComponent(encodedPath)
-      setUrlPath(decodedPath)
-  
-      // works asynchronously
       handleSubmit(null, decodedPath)
     }
-  }, [])
+  }, [slug])
+
+
 
   const handleSubmit = (event, urlPath) => {
     if (event) {
       event.preventDefault()
     }
+    setUrlPath(urlPath)
     fetch("http://localhost:9000/api/url/create", {
       method: 'POST',
       headers: {
@@ -38,16 +38,25 @@ const ProcessorContainer = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setProcessedText(data['result'])
+
+        // TO AVOID CALLSTACK SIZE EXCEEDED ERROR WHEN ARRAY IS EXTREMELY LARGE
+        // turn into nested array where each element is an array of the next 1000 results
+        // a little unwieldy, but it works
+        const largeData = []
+        let i = 0
+        while (data['result'].length > i) {
+          largeData.push(data['result'].slice(i, i + 1000))
+          i += 1000
+        }
+        setProcessedText(largeData)
       })
   }
 
   return(
     <>
+      <h3 className="text-center m-3">Check Frequency of Words in DOM</h3>
       <UrlForm handleSubmit={handleSubmit} />
-      {processedText.length > 0 ? 
       <Result processedText={processedText} urlPath={urlPath} /> 
-      : null}
     </>
   )
 }

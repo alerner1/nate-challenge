@@ -10,14 +10,6 @@ module.exports = function(app) {
     next()
   })
 
-  app.get("/api/test/all", controller.allAccess)
-
-  app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
-    controller.userAccess
-  )
-
   app.get(
     "/api/user/urls",
     [authJwt.verifyToken],

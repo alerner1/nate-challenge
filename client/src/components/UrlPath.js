@@ -3,7 +3,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const UrlPath = ({ urlPath }) => {
   return(
-    <ListGroup.Item>{urlPath}</ListGroup.Item>
+    <ListGroup.Item action>{urlPath}</ListGroup.Item>
   )
 }
 

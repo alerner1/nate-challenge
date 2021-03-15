@@ -65,6 +65,7 @@ function App() {
         <Route exact path="/login" render={() => <LoginContainer loginHandler={loginHandler} />} />
         <Route exact path="/signup" render={() => <SignupContainer />} />
         <Route exact path="/history" render={() => <HistoryContainer />} />
+        <Route exact path="/processor" render={() => <ProcessorContainer />} />
         <Route path="/" render={() => <ProcessorContainer />} />
       </Switch>
     </>

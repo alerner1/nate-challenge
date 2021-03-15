@@ -11,13 +11,19 @@ const NavMenu = ({ user, logoutHandler }) => {
     history.push('/history')
   }
 
+  const goToProcessor = (event) => {
+    event.preventDefault();
+    history.push('/processor')
+  }
+
   return(
     <Navbar bg="light" expand="lg">
       <Nav>
         {user ? 
         <>
-          <Nav.Link onClick={e => viewHistory(e)} href="#urls">My History</Nav.Link>
-          <Nav.Link onClick={e => logoutHandler(e)} href="#logout">Logout</Nav.Link>
+          <Nav.Link onClick={e => goToProcessor(e)}>Process URL</Nav.Link>
+          <Nav.Link onClick={e => viewHistory(e)}>My History</Nav.Link>
+          <Nav.Link onClick={e => logoutHandler(e)}>Logout</Nav.Link>
         </>
         : null
         }

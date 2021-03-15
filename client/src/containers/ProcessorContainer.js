@@ -6,16 +6,20 @@ import { useParams } from 'react-router-dom';
 
 const ProcessorContainer = () => {
   const [processedText, setProcessedText] = useState([])
+  let [urlPath, setUrlPath] = useState('')
   let { slug } = useParams();
 
   const token = localStorage.getItem("token")
-
-  // const parsed = qs.parse(props.location.search)
   
   useEffect(() => {
-    let urlPath = slug.split('=')[1]
-    urlPath = decodeURIComponent(urlPath)
-    handleSubmit(null, urlPath)
+    if (slug) {
+      const encodedPath = slug.split('=')[1]
+      const decodedPath = decodeURIComponent(encodedPath)
+      setUrlPath(decodedPath)
+  
+      // works asynchronously
+      handleSubmit(null, decodedPath)
+    }
   }, [])
 
   const handleSubmit = (event, urlPath) => {
@@ -34,7 +38,6 @@ const ProcessorContainer = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('fetching')
         setProcessedText(data['result'])
       })
   }
@@ -43,7 +46,7 @@ const ProcessorContainer = () => {
     <>
       <UrlForm handleSubmit={handleSubmit} />
       {processedText.length > 0 ? 
-      <Result processedText={processedText} /> 
+      <Result processedText={processedText} urlPath={urlPath} /> 
       : null}
     </>
   )

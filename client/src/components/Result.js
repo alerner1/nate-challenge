@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import {v4 as uuidv4} from 'uuid'
 
-const Result = ({ processedText }) => {
+const Result = ({ processedText, urlPath }) => {
   
   const mapWords = () => {
     return processedText.map(wordCount => {
@@ -14,17 +16,22 @@ const Result = ({ processedText }) => {
   }
 
   return(
-    <Table data-testid="results-table">
-      <thead>
-        <tr>
-          <th>Word</th>
-          <th>Frequency</th>
-        </tr>
-      </thead>
-      <tbody>
-        {mapWords()}
-      </tbody>
-    </Table>
+    <Row>
+      <Col xs={{ span: 6, offset: 3}}>
+        <h3 className="text-center">Frequency results for <a href={urlPath}>{urlPath}</a></h3>
+        <Table data-testid="results-table">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Frequency</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mapWords()}
+          </tbody>
+        </Table>
+      </Col>
+    </Row>
   )
 }
 
